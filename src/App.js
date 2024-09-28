@@ -20,80 +20,106 @@ let menuDescURL= '/api/menu-dscrn/korean'
 
 
 function App() {
-  const [rstrData,setRstrData]= useState();
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  const getRstrData = async() => {
-    let url = `https://busan-food.openapi.redtable.global${rstrDataURL}?serviceKey=${tokenKey}`
-    let response = await fetch(url);
-    let data = await response.json();
-    setRstrData(data.body[0]);
-    console.log("restaurant data",data);
-    console.log("first example",rstrData);
-  }
+  var xhr = new XMLHttpRequest();
+var url = 'http://apis.data.go.kr/6260000/FoodService/getFoodKr'; /*URL*/
+var queryParams = '?' + encodeURIComponent('serviceKey') + '='+'gbn2CWbfPq7J5Cn3UNX1uKBsgVCaCoH%2B7bsxs2v1db4LsayzwhOFUOWpjJypath3Qt3e0cfXciTFO1i6CX%2FVNQ%3D%3D'; /*Service Key*/
+queryParams += '&' + encodeURIComponent('pageNo') + '=' + encodeURIComponent('1'); /**/
+queryParams += '&' + encodeURIComponent('numOfRows') + '=' + encodeURIComponent('10'); /**/
+xhr.open('GET', url + queryParams);
+xhr.onreadystatechange = function () {
+    if (this.readyState == 4) {
+        alert('Status: '+this.status+'nHeaders: '+JSON.stringify(this.getAllResponseHeaders())+'nBody: '+this.responseText);
+    }
+};
 
-  const getRstrOperateData = async() => {
-    let url = `https://busan-food.openapi.redtable.global${rstrOperateURL}?serviceKey=${tokenKey}`
-    let response = await fetch(url);
-    let data = await response.json();
-    console.log("rstr operate data",data);
-  }
+xhr.send('');
 
-  const getRstrQualityData = async() => {
-    let url = `https://busan-food.openapi.redtable.global${rstrQualityURL}?serviceKey=${tokenKey}`
-    let response = await fetch(url);
-    let data = await response.json();
-    console.log("rstr quality data",data);
-  }
-
-  const getRstrImages = async() => {
-    let url = `https://busan-food.openapi.redtable.global${rstrImageURL}?serviceKey=${tokenKey}`
-    let response = await fetch(url);
-    let data = await response.json();
-    console.log("rstr images",data);
-  }
-
-  const getMenuData = async() => {
-    let url = `https://busan-food.openapi.redtable.global${menuURL}?serviceKey=${tokenKey}`
-    let response = await fetch(url);
-    let data = await response.json();
-    console.log("menu data",data);
-  }
-
-  const getMenuDescData = async() => {
-    let url = `https://busan-food.openapi.redtable.global${menuDescURL}?serviceKey=${tokenKey}`
-    let response = await fetch(url);
-    let data = await response.json();
-    console.log("menu desc data",data);
-  }
-
-  const getFoodImages = async() => {
-    let url = `https://busan-food.openapi.redtable.global${foodImageURL}?serviceKey=${tokenKey}`
-    let response = await fetch(url);
-    let data = await response.json();
-    console.log("food images",data);
-  }
-
-  
-  const getAllData = ()=>{
-    getRstrData();
-    getRstrOperateData();
-    getRstrQualityData();
-    getRstrImages();
-    getMenuData();
-    getMenuDescData();
-    getFoodImages();
-  }
+  // // const [rstrData,setRstrData]= useState();
+  // let rstrData;
+  // let rstrID;
   
 
+  // const getRstrData = async() => {
+  //   let url = `https://busan-food.openapi.redtable.global${rstrDataURL}?serviceKey=${tokenKey}`
+  //   let response = await fetch(url);
+  //   let data = await response.json();
+  //   // setRstrData(data.body[0]);
+  //   rstrData = data.body[0];  
+  //   rstrID = rstrData.RSTR_ID;
+
+  //   console.log("restaurant data",data);
+  //   console.log("first example",rstrData);
+  //   console.log("rstr ID",rstrID);
+  // }
+
+  // const getRstrOperateData = async() => {
+  //   let url = `https://busan-food.openapi.redtable.global${rstrOperateURL}?serviceKey=${tokenKey}`
+  //   let response = await fetch(url);
+  //   let data = await response.json();
+  //   console.log("rstr operate data",data);
+  // }
+
+  // const getRstrQualityData = async() => {
+  //   let url = `https://busan-food.openapi.redtable.global${rstrQualityURL}?serviceKey=${tokenKey}`
+  //   let response = await fetch(url);
+  //   let data = await response.json();
+  //   console.log("rstr quality data",data);
+  // }
+
+  // const getRstrImages = async() => {
+  //   let url = `https://busan-food.openapi.redtable.global${rstrImageURL}?serviceKey=${tokenKey}`
+  //   let response = await fetch(url);
+  //   let data = await response.json();
+  //   // let rstrImages = data.filter((img)=>{
+  //   //   return img.RSTR_ID == rstrID;
+  //   // })
+
+  //   console.log("rstr images",data);
+  //   // console.log("thisss rstr images", rstrImages);
+  // }
+
+  // const getMenuData = async() => {
+  //   let url = `https://busan-food.openapi.redtable.global${menuURL}?serviceKey=${tokenKey}`
+  //   let response = await fetch(url);
+  //   let data = await response.json();
+  //   console.log("menu data",data);
+  // }
+
+  // const getMenuDescData = async() => {
+  //   let url = `https://busan-food.openapi.redtable.global${menuDescURL}?serviceKey=${tokenKey}`
+  //   let response = await fetch(url);
+  //   let data = await response.json();
+  //   console.log("menu desc data",data);
+  // }
+
+  // const getFoodImages = async() => {
+  //   let url = `https://busan-food.openapi.redtable.global${foodImageURL}?serviceKey=${tokenKey}`
+  //   let response = await fetch(url);
+  //   let data = await response.json();
+  //   console.log("food images",data);
+  // }
+
+  
+  // const getAllData = ()=>{
+  //   getRstrData();
+  //   getRstrOperateData();
+  //   getRstrQualityData();
+  //   getRstrImages();
+  //   getMenuData();
+  //   getMenuDescData();
+  //   getFoodImages();
+  // }
+  
   //1,5,9,10,11,12,13,14
 
-  useEffect(()=>{
-    getAllData();
-  },[]);
+  // useEffect(()=>{
+  //   getAllData();
+  // },[]);
 
   return (
     <div>
@@ -108,7 +134,7 @@ function App() {
         <img src={restaurant} alt="restaurant-img5" className="food pos5" width="90"/>
       </div>
       
-      <RstrModal data={rstrData} show={show} handleClose={handleClose}/>/
+      {/* <RstrModal data={rstrData} show={show} handleClose={handleClose}/>/ */}
     </div>
   );
 }

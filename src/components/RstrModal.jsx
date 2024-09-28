@@ -2,6 +2,7 @@ import React from "react";
 import { Button, Modal } from "react-bootstrap";
 
 const RstrModal = ({data, show, handleClose}) => {
+  console.log("component data",data);
   return (
     <Modal show={show} onHide={handleClose} centered>
       <Modal.Header closeButton>
