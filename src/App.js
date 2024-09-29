@@ -18,13 +18,14 @@ function App() {
   //   getAttractionInfo();
   // },[]);
 
+
   var xhr = new XMLHttpRequest();
 var url = 'http://apis.data.go.kr/3330000/HeaundaeTourAttrInfoService/getTourAttrList'; /*URL*/
-var queryParams = '?' + encodeURIComponent('serviceKey') + '='+`${tokenKey}`; /*Service Key*/
+var queryParams = '?' + encodeURIComponent('serviceKey') + '='+'gbn2CWbfPq7J5Cn3UNX1uKBsgVCaCoH%2B7bsxs2v1db4LsayzwhOFUOWpjJypath3Qt3e0cfXciTFO1i6CX%2FVNQ%3D%3D'; /*Service Key*/
 queryParams += '&' + encodeURIComponent('pageNo') + '=' + encodeURIComponent('1'); /**/
 queryParams += '&' + encodeURIComponent('numOfRows') + '=' + encodeURIComponent('10'); /**/
-queryParams += '&' + encodeURIComponent('trrsrtNm') + '=' + encodeURIComponent('부산항대교'); /**/
-queryParams += '&' + encodeURIComponent('resultType') + '=' + encodeURIComponent('json'); /**/
+// queryParams += '&' + encodeURIComponent('trrsrtNm') + '=' + encodeURIComponent('부산항대교'); /**/
+// queryParams += '&' + encodeURIComponent('resultType') + '=' + encodeURIComponent('json'); /**/
 xhr.open('GET', url + queryParams);
 xhr.onreadystatechange = function () {
     if (this.readyState == 4) {
