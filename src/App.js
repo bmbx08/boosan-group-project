@@ -25,19 +25,28 @@ function App() {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  var xhr = new XMLHttpRequest();
-var url = 'http://apis.data.go.kr/6260000/FoodService/getFoodKr'; /*URL*/
-var queryParams = '?' + encodeURIComponent('serviceKey') + '='+'gbn2CWbfPq7J5Cn3UNX1uKBsgVCaCoH%2B7bsxs2v1db4LsayzwhOFUOWpjJypath3Qt3e0cfXciTFO1i6CX%2FVNQ%3D%3D'; /*Service Key*/
-queryParams += '&' + encodeURIComponent('pageNo') + '=' + encodeURIComponent('1'); /**/
-queryParams += '&' + encodeURIComponent('numOfRows') + '=' + encodeURIComponent('10'); /**/
-xhr.open('GET', url + queryParams);
-xhr.onreadystatechange = function () {
-    if (this.readyState == 4) {
-        alert('Status: '+this.status+'nHeaders: '+JSON.stringify(this.getAllResponseHeaders())+'nBody: '+this.responseText);
-    }
-};
+  // var xhr = new XMLHttpRequest();
+  // var url = 'http://apis.data.go.kr/6260000/FoodService/getFoodKr'; /*URL*/
+  // var queryParams = '?' + encodeURIComponent('serviceKey') + '='+'gbn2CWbfPq7J5Cn3UNX1uKBsgVCaCoH%2B7bsxs2v1db4LsayzwhOFUOWpjJypath3Qt3e0cfXciTFO1i6CX%2FVNQ%3D%3D'; /*Service Key*/
+  // queryParams += '&' + encodeURIComponent('pageNo') + '=' + encodeURIComponent('1'); /**/
+  // queryParams += '&' + encodeURIComponent('numOfRows') + '=' + encodeURIComponent('10'); /**/
+  // xhr.open('GET', url + queryParams);
+  // xhr.onreadystatechange = function () {
+  //     if (this.readyState == 4) {
+  //         alert('Status: '+this.status+'nHeaders: '+JSON.stringify(this.getAllResponseHeaders())+'nBody: '+this.responseText);
+  //     }
+  // };
+  // xhr.send('');
 
-xhr.send('');
+  const getData = async()=>{
+    let key = 'gbn2CWbfPq7J5Cn3UNX1uKBsgVCaCoH%2B7bsxs2v1db4LsayzwhOFUOWpjJypath3Qt3e0cfXciTFO1i6CX%2FVNQ%3D%3D'
+    let url=`http://apis.data.go.kr/6260000/FoodService/getFoodKr?serviceKey=${key}&pageNo=1&numOfRows=1000&resultType=json`
+    let response = await fetch(url);
+    console.log(response);
+    let data = await response.json();
+    console.log(data);
+  }
+
 
   // // const [rstrData,setRstrData]= useState();
   // let rstrData;
@@ -117,9 +126,10 @@ xhr.send('');
   
   //1,5,9,10,11,12,13,14
 
-  // useEffect(()=>{
-  //   getAllData();
-  // },[]);
+  useEffect(()=>{
+    // getAllData();
+    getData();
+  },[]);
 
   return (
     <div>
