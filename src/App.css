@@ -11,8 +11,30 @@
     top: 35em;
 }
 
-.food{
+.img{
+    width: 5.5em;
+}
+
+.icon{
     position:absolute;
+    opacity: 0;
+    transition: 0.3s ease;
+}
+
+.icon:hover{
+    transform: scale(1.1);
+    transition: ease-in-out 0.1s;
+}
+
+.fade-in{
+    opacity: 1;
+}
+
+.fade-out{
+    opacity:0;
+}
+
+.food{
     border-radius: 50px;
     border: 0px solid rgb(242,191,99);
 }
@@ -20,33 +42,31 @@
 .food:hover{
     border: 3px solid rgb(242,191,99);
     border-radius: 50px;
-    transform: scale(1.1);
-    transition: ease-in-out 0.1s;
 }
 
 .pos1{
-    top:16em;
-    left: 52em;
+    top:19.2%;
+    left: 39.17%;
 }
 
 .pos2{
-    top:8em;
-    left: 72em;
+    top: 9.6%;
+    left: 54.4%;
 }
 
 .pos3{
-    top:46em;
-    left: 52em;
+    top:55.3%;
+    left: 39.24%;
 }
 
 .pos4{
-    top:56em;
-    left: 69em;
+    top:66.9%;
+    left: 52.15%;
 }
 
 .pos5{
-    top:60.5em;
-    left: 58em;
+    top:72.5%;
+    left: 43.7%;
 }
 
 .radio-section{
@@ -56,11 +76,35 @@
     font-size: 2em;
 }
 
-.radio-button{
-    width: 1em;
-    height:1em;
+.radio-nodisplay{
+    display:none;
 }
 
-label{
+.radio-button{
     display:block;
+    padding: 0.5em 1em;
+    margin:0.5em;
+    background-color: #f1a859;
+    color: white;
+    font-size: 1.5em;
+    border-radius: 0.5em;
+    cursor:pointer;
+    border: 1px solid #ccc;
+    transition: background-color 0.3s ease;
 }
+
+.radio-button:hover{
+    background-color:#efbf8b;
+}
+
+.radio-button.active{
+    background-color: #f7860e;
+    color:white;
+    border: 1px solid #ff8400;
+}
+
+
+
+/* label{
+    display:block;
+} */

@@ -1,78 +1,57 @@
 import { useEffect, useState } from "react";
-import Button from 'react-bootstrap/Button';
-import Modal from 'react-bootstrap/Modal';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import "./App.css";
-// import map from "./common/images/boosan-map.png";
 import northwest from "./common/images/northwest.png"
 import tourist from "./common/images/tourist.png"
 import boogi from "./common/images/Boogi.png"
-import restaurant from "./common/images/restaurant.png"
 import RstrModal from "./components/RstrModal";
-import {filterByCategory} from "./function/filterByCategory"
+import { filterHistory } from "./function/filterHistory";
+import { filterCulture } from "./function/filterCulture";
+import { filterNature } from "./function/filterNature";
 import RstrIcon from "./components/RstrIcon";
-import HistoryIcon from "./components/HistoryIcon";
-
-
+import AttrIcon from "./components/AttrIcon";
+import RadioSection from "./components/RadioSection";
 
 function App() {
   const [show, setShow] = useState(false);
-  const [rstrData, setRstrData] = useState(null);
-  const [totalData, setTotalData]=useState(null);
+  const [modalData, setModalData] = useState(null);
   const [keumData, setKeumData]= useState(null);
   const [dongData, setDongData]= useState(null);
   const [yeonData, setYeonData]= useState(null);
 
-  const [attrData,setAttrData]= useState(null);
-  const [keumAttr, setKeumAttr]= useState(null);
-  const [dongAttr, setDongAttr]= useState(null);
-  const [yeonAttr, setYeonAttr]= useState(null);
-
+  const [rstrData, setRstrData] = useState(null);
   const [historyData, setHistoryData]= useState(null);
   const [natureData, setNatureData] = useState(null);
   const [cultureData, setCultureData] =  useState(null);
 
   const [theme, setTheme] = useState(null);
 
+  const [fade,setFade] = useState(true);
+
   const handleClose = () => setShow(false);
-  // const handleShow = (num) => setShow(true);
 
   const handleShow = (loc, num)=>{
-    if(loc==="keum") {setRstrData(keumData?keumData[num]:null);}
-    else if(loc==="dong") {setRstrData(dongData?dongData[num]:null);}
-    else if(loc==="yeon") {setRstrData(yeonData?yeonData[num]:null);}
-    setShow(true);
-  }
-
-  const handleKeumShow = (num) =>{
-    setRstrData(keumData?keumData[num]:null); 
-    setShow(true);
-  }
-  const handleDongShow = (num) =>{
-    setRstrData(dongData?dongData[num]:null); 
-    setShow(true);
-  }
-  const handleYeonShow = (num) =>{
-    setRstrData(yeonData?yeonData[num]:null); 
+    if(loc==="keum") {setModalData(keumData?keumData[num]:null);}
+    else if(loc==="dong") {setModalData(dongData?dongData[num]:null);}
+    else if(loc==="yeon") {setModalData(yeonData?yeonData[num]:null);}
     setShow(true);
   }
 
   //keum,dong,yeon
 
-  // const getData = async()=>{
-  //   try{
-  //     let key = 'gbn2CWbfPq7J5Cn3UNX1uKBsgVCaCoH%2B7bsxs2v1db4LsayzwhOFUOWpjJypath3Qt3e0cfXciTFO1i6CX%2FVNQ%3D%3D'
-  //     let url=`http://apis.data.go.kr/6260000/FoodService/getFoodKr?serviceKey=${key}&pageNo=1&numOfRows=1000&resultType=json`
-  //     let response = await fetch(url);
-  //     let data = await response.json();
-  //     console.log(data);
-  //     filterData(data);
-  //     setTotalData(data);
-  //     setRstrData(data.getFoodKr.item[0]);      
-  //   }catch(error){
-  //     console.log("error message",error);
-  //   }
-  // }
+  const getRstrData = async()=>{
+    try{
+      let key = 'gbn2CWbfPq7J5Cn3UNX1uKBsgVCaCoH%2B7bsxs2v1db4LsayzwhOFUOWpjJypath3Qt3e0cfXciTFO1i6CX%2FVNQ%3D%3D'
+      let url=`http://apis.data.go.kr/6260000/FoodService/getFoodKr?serviceKey=${key}&pageNo=1&numOfRows=1000&resultType=json`
+      let response = await fetch(url);
+      let firstData = await response.json();
+      let data = firstData.getFoodKr.item;
+      console.log(data);
+      setRstrData(data);
+    }catch(error){
+      console.log("error message",error);
+    }
+  }
 
   const getAttractionData = async()=>{
     try{
@@ -82,18 +61,19 @@ function App() {
       let firstData = await response.json();
       let data = firstData.getAttractionKr.item;
       console.log(data);
-      setAttrData(data);
-      filterAttrData(data);
-      // filterByCategory(data, setHistoryData, setNatureData, setCultureData);
-      
-      
+      setHistoryData(filterHistory(data));
+      setNatureData(filterNature(data));
+      setCultureData(filterCulture(data));
+      console.log("history, nature, culture", historyData, natureData, cultureData)
+      // filterByLoc(historyData);
     }catch(error){
       console.log("error message",error);
     }
   }
 
-  const filterAttrData=(data)=>{
-    let keum = data.filter((item)=>{
+  const filterByLoc=(data)=>{
+    console.log(data);
+    let keum = data?.filter((item)=>{
       return item.GUGUN_NM === '금정구'
     })
     setKeumData(keum);
@@ -110,10 +90,50 @@ function App() {
     console.log("연제구 데이터", yeon);
   }
 
+  const handleRadioChange=(event)=>{
+    const selectedTheme = event.target.value;
+    let beforeFilter;
+    setFade(false);
+
+    setTimeout(() => {
+      if(selectedTheme === "history"){
+        beforeFilter = "history";
+      } else if(selectedTheme ==="nature"){
+        beforeFilter = "nature";
+      } else if(selectedTheme === "culture"){
+        beforeFilter = "culture";
+      }else if(selectedTheme === "food"){
+        beforeFilter = "food";
+      }
+
+      if(beforeFilter){
+        setTheme(beforeFilter);
+      }
+      setTimeout(() => {
+        setFade(true);
+      }, 100); //상태 업데이트 미리 시작되게끔 설정
+    }, 300);
+    
+  }
+
   useEffect(()=>{
-    // getData();
-    getAttractionData();
-  },[]);
+    if(theme===null){
+      getAttractionData();
+      getRstrData();
+    }
+    if(historyData||natureData||cultureData){ //데이터 가져오기 전 라디오 누를 때 에러 방지
+      if(theme==="history"){
+        filterByLoc(historyData);
+      }else if(theme==="nature"){
+        filterByLoc(natureData);
+      }else if(theme==="culture"){
+        filterByLoc(cultureData);
+      }else if(theme==="food"){
+        filterByLoc(rstrData);
+      }
+    }
+    
+  },[theme]);
 
   return (
     <div>
@@ -121,42 +141,45 @@ function App() {
         <img src={northwest} alt="busan-northwest-map" className="map" width="800"/>
         {/* <img src={tourist} alt="tourist-img" className="tourist" width="150"/> */}
         <img src={boogi} alt="tourist-img" className="tourist" width="150"/> {/*부산시 소통캐릭터*/}
-        <RstrIcon loc="keum" showNum={0} index={1} handleShow={handleShow}/>
-        <RstrIcon loc="keum" showNum={1} index={2} handleShow={handleShow}/>
-        <RstrIcon loc="dong" showNum={0} index={3} handleShow={handleShow}/>
-        <RstrIcon loc="dong" showNum={1} index={4} handleShow={handleShow}/>
-        <RstrIcon loc="yeon" showNum={0} index={5} handleShow={handleShow}/>
-        <HistoryIcon loc="keum" showNum={0} index={1} handleShow={handleShow}/>
-        {/* <img src={restaurant} alt="restaurant-icon" className="food pos1" width="90" onClick={()=>handleShow("keum",0)}/>
-        <img src={restaurant} alt="restaurant-icon" className="food pos2" width="90" onClick={()=>handleShow("keum",1)}/>
-        <img src={restaurant} alt="restaurant-icon" className="food pos3" width="90" onClick={()=>handleShow("dong",0)}/>
-        <img src={restaurant} alt="restaurant-icon" className="food pos4" width="90" onClick={()=>handleShow("dong",1)}/>
-        <img src={restaurant} alt="restaurant-icon" className="food pos5" width="90" onClick={()=>handleShow("yeon",0)}/>*/}
-        <div className="radio-section">
-        <label>
-            <input 
-              type="radio" 
-              name="options" 
-              value="1" 
-              className="radio-button"
-              // onChange={handleRadioChange} 
-            />
-            1번
-          </label>
-          <label>
-            <input 
-              type="radio" 
-              name="options" 
-              value="2" 
-              className="radio-button"
-              // onChange={handleRadioChange} 
-            />
-            2번
-          </label>
-        </div>
+        {theme==="history" &&
+          <>
+          <AttrIcon loc="keum" theme={theme} showNum={0} index={1} handleShow={handleShow} fade={fade}/>
+          <AttrIcon loc="keum" theme={theme} showNum={1} index={2} handleShow={handleShow} fade={fade}/>
+          <AttrIcon loc="dong" theme={theme} showNum={0} index={3} handleShow={handleShow} fade={fade}/>
+          <AttrIcon loc="dong" theme={theme} showNum={1} index={4} handleShow={handleShow} fade={fade}/>
+          <AttrIcon loc="yeon" theme={theme} showNum={0} index={5} handleShow={handleShow} fade={fade}/>
+          </>
+        }
+        {theme==="nature" &&
+          <>
+          <AttrIcon loc="keum" theme={theme} showNum={0} index={1} handleShow={handleShow} fade={fade}/>
+          <AttrIcon loc="keum" theme={theme} showNum={1} index={2} handleShow={handleShow} fade={fade}/>
+          <AttrIcon loc="dong" theme={theme} showNum={0} index={3} handleShow={handleShow} fade={fade}/>
+          <AttrIcon loc="dong" theme={theme} showNum={1} index={4} handleShow={handleShow} fade={fade}/>
+          <AttrIcon loc="yeon" theme={theme} showNum={0} index={5} handleShow={handleShow} fade={fade}/>
+          </>
+        }
+        {theme==="culture" &&
+          <>
+          <AttrIcon loc="keum" theme={theme} showNum={0} index={1} handleShow={handleShow} fade={fade}/>
+          <AttrIcon loc="keum" theme={theme} showNum={1} index={2} handleShow={handleShow} fade={fade}/>
+          <AttrIcon loc="dong" theme={theme} showNum={0} index={3} handleShow={handleShow} fade={fade}/>
+          <AttrIcon loc="dong" theme={theme} showNum={1} index={4} handleShow={handleShow} fade={fade}/>
+          <AttrIcon loc="yeon" theme={theme} showNum={0} index={5} handleShow={handleShow} fade={fade}/>
+          </>
+        }
+        {theme==="food" &&
+          <>
+          <RstrIcon loc="keum" showNum={0} index={1} handleShow={handleShow} fade={fade}/>
+          <RstrIcon loc="keum" showNum={1} index={2} handleShow={handleShow} fade={fade}/>
+          <RstrIcon loc="dong" showNum={0} index={3} handleShow={handleShow} fade={fade}/>
+          <RstrIcon loc="dong" showNum={1} index={4} handleShow={handleShow} fade={fade}/>
+          <RstrIcon loc="yeon" showNum={0} index={5} handleShow={handleShow} fade={fade}/>
+          </>
+        }
+        <RadioSection handleRadioChange={handleRadioChange} theme={theme}/>
       </div>
-      {/* <div>{rstrData?.getFoodKr.item[0].TITLE}</div> */}
-      <RstrModal data={rstrData} show={show} handleClose={handleClose}/>
+      <RstrModal data={modalData} theme={theme} show={show} handleClose={handleClose}/>
     </div>
   );
 }
