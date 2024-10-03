@@ -1,17 +1,4 @@
-.map-container{
-    display:flex;
-    justify-content: center;
-    margin: 5em;
-    position: relative;
-    background-color: skyblue;
-}
-
-.tourist{
-    position:absolute;
-    top: 35em;
-}
-
-.food{
+/* .food{
     position:absolute;
     border-radius: 50px;
     border: 0px solid rgb(242,191,99);
@@ -47,20 +34,4 @@
 .pos5{
     top:60.5em;
     left: 58em;
-}
-
-.radio-section{
-    position:absolute;
-    right:2em;
-    bottom:2em;
-    font-size: 2em;
-}
-
-.radio-button{
-    width: 1em;
-    height:1em;
-}
-
-label{
-    display:block;
-}
+} */
