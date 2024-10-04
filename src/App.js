@@ -1,12 +1,19 @@
 import "./App.css";
-import map from "./common/images/boosan-map.png";
 
 function App() {
   return (
     <div>
-      <div className="map-container">
-        <img src={map} className="map" />
-      </div>
+      <Routes>
+        <Route path="/">
+          <Route index element={<MainMapPage/>}/>
+          <Route path=":id" element={<SmallMapPage/>}/>
+          <Route path="location">
+            <Route index element={<LocationPage/>}/>
+            <Route path=":id" element={<LocationDetailPage/>}/>
+          </Route>
+        </Route>
+        
+      </Routes>
     </div>
   );
 }
