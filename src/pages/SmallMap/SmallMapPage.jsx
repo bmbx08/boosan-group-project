@@ -5,9 +5,9 @@ import { useHouseDataQuery } from '../../hooks/useHouseData';
 import { useEstateDataQuery } from '../../hooks/useEstateDate';
 
 const SmallMapPage = () => {
-    const {data,isLoading,isError,error}=useEstateDataQuery();
-    console.log("data",data,isLoading);
-    console.log("error",isError,error);
+    // const {data,isLoading,isError,error}=useEstateDataQuery();
+    // console.log("data",data,isLoading);
+    // console.log("error",isError,error);
 
   return (
     <div>
