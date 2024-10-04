@@ -15,7 +15,9 @@ function App() {
           <Route path=":id" element={<SmallMapPage/>}/>
           <Route path="location">
             <Route index element={<LocationPage/>}/>
-            <Route path=":id" element={<LocationDetailPage/>}/>
+            <Route path=":id">
+              <Route index element={<LocationDetailPage/>}/>
+            </Route>
           </Route>
         </Route>
       </Routes>
