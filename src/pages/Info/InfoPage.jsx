@@ -14,7 +14,6 @@ const InfoPage = () => {
   const {
     data:rstrData, isLoading:rstrIsLoading, isError:rstrIsError, error:rstrError
   } = useRestaurantDataQuery()
-  console.log("history, nature, culture", historyData, natureData, cultureData);
   console.log("rstrData", rstrData, rstrIsLoading);
   console.log("rstrError", rstrIsError, rstrError);
 
@@ -24,12 +23,8 @@ const InfoPage = () => {
   console.log("attrData", attrData, attrIsLoading);
   console.log("attrError", attrIsError, attrError);
 
-  const checkData=()=>{
-    console.log("history data",historyData);
-    console.log("nature data",natureData);
-    console.log("culture data",cultureData);
-    console.log("맛집 data",rstrData);
-  }
+  console.log("history, nature, culture, 맛집 데이터", historyData, natureData, cultureData,rstrData);
+
 
   useEffect(()=>{
     if(attrData){
@@ -42,7 +37,6 @@ const InfoPage = () => {
   return (
     <div>
       Info Page
-      <button onClick={checkData}>Click Me</button>
     </div>
   )
 }
