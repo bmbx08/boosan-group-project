@@ -1,0 +1,154 @@
+/* .weather-card{
+  background-color: rgba(52,52,52,.7);
+    padding: 50px;
+    border: 2px solid #fff;
+    border-radius: 20px;
+    max-width: 400px;
+    width:100%;
+    height: 150px;
+}
+.main-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  
+  
+}
+.menu-container{
+  display: flex;
+    justify-content: center;
+    background-color: #000;
+    border-radius: 60px;
+    max-width: 700px;
+    width:100%;
+   padding: 30px;
+   margin-top: 30px;
+
+}
+.menu-container Button{
+  margin-right:30px;
+}
+
+.menu-container Button:hover{
+  background-color: #ffc107;
+} */
+
+/* 새로운 css 시계 */
+.clock-widget .container {
+  overflow: hidden;
+  z-index: 10;
+  position: relative;
+  margin: 150px auto;
+  height: 90px;
+  width: 300px;
+  /* background-color: #F17022; */
+  background-color: rgba(241, 112, 34, 0.8);
+  border-radius: 10px;
+  box-shadow: 2px 2px 1px rgba(0, 0, 0, 0.2);
+  /* border: 3px solid white; */
+  right:1em;
+  top:1em;
+}
+
+/* Background elements */
+.clock-widget .Circle1 {
+  z-index: 1001;
+  position: absolute;
+  height: 80px;
+  width: 80px;
+  right: -20px;
+  top: -30px;
+  border-radius: 50%;
+  background-color: rgba(253, 184, 19, 1);
+  animation: enlarge 5s infinite;
+}
+
+.clock-widget .Circle2 {
+  z-index: 80;
+  position: absolute;
+  height: 150px;
+  width: 150px;
+  right: -50px;
+  top: -70px;
+  border-radius: 50%;
+  background-color: rgba(246, 140, 31, 0.7);
+  animation: enlarge 7s infinite;
+}
+
+.clock-widget .Circle3 {
+  z-index: 50;
+  position: absolute;
+  height: 200px;
+  width: 200px;
+  right: -50px;
+  top: -100px;
+  border-radius: 50%;
+  background-color: rgba(241, 125, 45, 0.7);
+  animation: enlarge 10s infinite;
+}
+
+/* Content styling */
+.clock-widget .sun {
+  z-index: 1000;
+  font-size: 15px !important;
+}
+
+.clock-widget .Condition {
+  z-index: 1000;
+  position: absolute;
+  font-family: "Roboto", sans-serif;
+  font-weight: 100;
+  font-size: 20px;
+  left: 20px;
+  top: 10px;
+}
+
+.clock-widget .Temp {
+  z-index: 1000;
+  position: absolute;
+  font-family: "Roboto", sans-serif;
+  font-size: 35px;
+  font-weight: 400;
+  left: 20px;
+  bottom: 5px;
+}
+
+.clock-widget #F {
+  z-index: 1000;
+  font-family: "Roboto", sans-serif;
+  font-weight: 100;
+  font-size: 30px;
+}
+
+.clock-widget .Time {
+  z-index: 1000;
+  position: absolute;
+  font-family: "Noto Sans", sans-serif;
+  font-size: 18px;
+  font-weight: 200;
+  right: 20px;
+  top: 10px;
+}
+
+.clock-widget .locationIcon {
+  z-index: 1000;
+  font-size: 10px !important;
+}
+
+.clock-widget .Location {
+  z-index: 1000;
+  position: absolute;
+  font-family: "Noto Sans", sans-serif;
+  font-size: 12px;
+  font-weight: 200;
+  right: 20px;
+  bottom: 15px;
+}
+
+/* Animation */
+@keyframes enlarge {
+  50% {
+    transform: scale(1.2);
+  }
+}
