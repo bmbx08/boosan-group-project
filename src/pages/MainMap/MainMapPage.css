@@ -1,0 +1,362 @@
+
+.map-container {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    background-image: url('../../common/images/부산시지도.png'); 
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    overflow: hidden;
+    transition: background-image 0.5s ease-out;
+    background-color: #007AE5;
+  }
+  
+  .map-svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    fill: transparent;
+    
+  }
+  
+  .map-area {
+    fill: transparent; /* 기본 영역 투명 */
+    pointer-events: all; /* 클릭과 hover 활성화 */
+  }
+  
+  /* Area-specific hover styles */
+  
+  .map-area1.hovered {
+    fill: rgba(255, 165, 0, 0.5); /* 연한 주황색 */
+    transition: fill 0.3s ease; /* 매끄러운 fill 전환 */
+  }
+  
+  .map-area2.hovered {
+    fill: rgba(255, 99, 71, 0.5); /* 연한 빨간색 */
+    transition: fill 0.3s ease; /* 매끄러운 fill 전환 */
+  }
+  
+  .map-area3.hovered {
+    fill: rgba(255, 99, 71, 0.5); /* 연한 빨간색 */
+    transition: fill 0.3s ease; /* 매끄러운 fill 전환 */
+  }
+  
+  .map-area4.hovered {
+    fill: rgba(72, 209, 204, 0.5); /* 연한 청록색 */
+    transition: fill 0.3s ease; /* 매끄러운 fill 전환 */
+  }
+  
+  .map-area5.hovered {
+    fill: rgba(0, 255, 0, 0.5);
+    transition: fill 0.3s ease; /* 매끄러운 fill 전환 */
+  }
+  
+  .map-area6.hovered {
+    fill: rgba(255, 255, 0, 0.5);
+    transition: fill 0.3s ease; /* 매끄러운 fill 전환 */
+  }
+  
+  .map-area7.hovered {
+    fill: rgba(255, 255, 0, 0.5);
+    transition: fill 0.3s ease; /* 매끄러운 fill 전환 */
+  }
+  
+  
+  .map-area.hovered {
+    transition: fill 0.3s ease; /* 매끄러운 fill 전환 */
+  }
+  
+  
+  
+  /* 모달 및 이미지 css */
+  /* 모달 배경 */
+  /* .modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000!important; 
+  } */
+  
+  
+  .modal-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* 반투명 검정 배경 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+  .modal-main{
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    width: 400px;
+    height: 500px; /* 모달의 크기 설정 */
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    z-index: 1000;
+  }
+  
+  /* 모달 콘텐츠 */
+  .modal-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    width: 400px;
+    height: 500px;/* 모달의 크기 설정 */
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    z-index: 1000;
+  }
+  
+  /* 모달 닫기 버튼 */
+  .close-modal {
+    position: absolute;
+    top: 10px;
+    right: 0px;
+    background-color: transparent;
+    border: none;
+    font-size: 10px;
+    cursor: pointer;
+    color: black;
+  }
+  
+  /* 부기 이미지 및 말풍선 스타일은 동일 */
+  .bugee-container {
+    position: fixed;
+    bottom: 0px;
+    left: -30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 10; /* 버튼 클릭이 가능하도록 충분히 높은 값 설정 */
+  }
+  
+  .bugee-image {
+    width: 450px;
+    
+  }
+  
+  .speech-bubble {
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 10px;
+    margin-top: 10px;
+    position: relative;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
+  }
+  
+  .speech-bubble::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 20px;
+    border-width: 10px;
+    border-style: solid;
+    border-color: #fff transparent transparent transparent;
+    z-index: 11; /* 버튼이 클릭 가능하도록 말풍선 위로 올림 */
+  }
+  
+  .bugee-button {
+    margin-top: 10px;
+    background-color: #007AE5;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  /* 표지판 css */
+  
+  .sign-container {
+    position: fixed; /* 고정된 위치 설정 */
+    right: 0px; /* 화면의 오른쪽 끝으로 배치 */
+    top: 50%; /* 화면의 세로 중심 */
+    transform: translateY(-50%); /* 세로 중심 정렬 */
+  }
+  
+  .sign-image {
+    width: 500px; /* 이미지 크기 600px로 조정 */
+    height: auto;
+    position: relative;
+  }
+  
+  /* sign-box 기본 스타일 */
+  .sign-box {
+    position: absolute;
+    width: 300px; /* 박스의 너비 설정 */
+    height: 40px; /* 박스의 높이 설정 */
+    left: 210px; /* 표지판 안의 텍스트 위치 조정 */
+    border-radius: 5px;
+    color: white;
+    display: flex;
+    justify-content: flex-start; /* 텍스트 왼쪽 정렬 */
+    align-items: center;
+    font-weight: bold;
+  }
+  
+  /* 직사각형 color-box 스타일 */
+  .color-box {
+    width: 30px; /* 작은 직사각형 박스 너비 */
+    height: 30px; /* 작은 직사각형 박스 높이 */
+    margin-right: 10px; /* 텍스트와의 간격 */
+    border-radius: 5px; /* 직사각형 모서리 둥글게 */
+  }
+  
+  /* 각 박스의 색상 및 위치 설정 */
+  
+  /* 1번 표지판 */
+  .box1 {
+    top: 70px;
+    left: 160px; /* 이미지의 첫 번째 칸 위치 */
+  }
+  
+  .box1 .color-box {
+    background-color: rgba(255, 99, 71, 0.5); /* 연한 빨강 */
+  }
+  
+  /* 2번 표지판 */
+  .box2 {
+    top: 110px; /* 이미지의 두 번째 칸 위치 */
+    left: 160px;
+  }
+  
+  .box2 .color-box {
+    background-color: rgba(255, 165, 0, 0.5); /* 연한 주황 */
+  }
+  
+  /* 3번 표지판 */
+  .box3 {
+    top: 150px; /* 이미지의 세 번째 칸 위치 */
+    left: 160px;
+  }
+  
+  .box3 .color-box {
+    background-color: rgba(255, 255, 0, 0.5); /* 연한 노랑 */
+  }
+  
+  /* 4번 표지판 */
+  .box4 {
+    top: 190px; /* 이미지의 네 번째 칸 위치 */
+    left: 160px;
+  }
+  
+  .box4 .color-box {
+    background-color: rgba(72, 209, 204, 0.5); /* 연한 청록 */
+  }
+  
+  /* 5번 표지판 */
+  .box5 {
+    top: 230px; /* 이미지의 다섯 번째 칸 위치 */
+    left: 160px;
+  }
+  
+  .box5 .color-box {
+    background-color: rgba(0, 255, 0, 0.5); /* 연한 초록 */
+  }
+  
+  /* weatehrBox 상단 고정 */
+  .weather-box {
+    position: fixed; /* 고정된 위치 */
+    top: -150px; /* 상단으로부터 20px 여백 */
+    right: -100px; /* 오른쪽 끝에서 20px 여백 */
+    z-index: 100; /* 더 높은 z-index 값으로 설정 */
+    width: 500px;
+  }
+  
+  /* 라디오 버튼 컨테이너를 화면의 오른쪽 하단에 고정 */
+  .radio-container {
+    
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: rgba(255, 255, 255, 0.9); /* 살짝 투명한 흰색 배경 */
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* 가벼운 그림자 */
+    z-index: 1000; /* 다른 요소 위에 위치 */
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* 각 라벨 사이 간격 */
+    
+  }
+  
+
+  
+  /* 말풍선 새로운 디자인 */
+  .thought {
+    align-items: center;
+    align-content: center;
+    padding: 0 10%;
+    display: flex;
+    flex-flow: row wrap;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 30px;
+    min-width: 40px;
+    max-width: 240px;
+    min-height: 40px;
+    margin: 20px;
+    position: relative;
+    justify-content: center;
+    text-align: center;
+    z-index: 1;
+  }
+  
+  .thought:before,
+  .thought:after {
+    content: "";
+    background-color: #fff;
+    border-radius: 50%;
+    display: block;
+    position: absolute;
+    z-index: -1;
+  }
+  
+  .thought:before {
+    width: 44px;
+    height: 44px;
+    top: -12px;
+    left: 28px;
+    box-shadow: -50px 30px 0 -12px #fff;
+  }
+  
+  .thought:after {
+    bottom: -10px;
+    right: 26px;
+    width: 30px;
+    height: 30px;
+    box-shadow: 40px -34px 0 0 #fff, -28px -6px 0 -2px #fff,
+                -24px 17px 0 -6px #fff, -5px 25px 0 -10px #fff;
+  }
+  
+  .logo-container {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 101; /* NavBar 위에 배치 */
+  }
+  
+  .logo-image {
+    width:250px; /* 로고 크기 조정 */
+    height: auto;
+  }
