@@ -300,98 +300,54 @@
     
   }
   
-  /* 라디오 버튼 디자인 */
-  .radio-label {
-    display: flex;
-    align-items: center;
-    font-size: 16px;
-    color: #333; /* 텍스트 색상 */
-    cursor: pointer;
-  }
-  
-  .radio-label input {
-    margin-right: 10px;
-    accent-color: #007AE5; /* 체크된 라디오 버튼 색상 (지도와 어울리도록 파란색) */
-  }
-  
-  /* 호버 및 포커스 시 스타일 */
-  .radio-label:hover {
-    color: #007AE5; /* 호버 시 텍스트 색상 변경 */
-  }
-  
-  .radio-label input:focus {
-    outline: 2px solid #007AE5; /* 포커스 시 테두리 */
-  }
-  
-  /* 기존 스타일 외에 말풍선 스타일 추가 */
-  .balloon {
-    position: absolute;
-    top: 700px; /* 말풍선의 위치 */
-    left: 1100px;
-    background-color: rgba(255, 255, 255, 0.9); /* 배경색 및 투명도 */
-    padding: 10px;
-    border-radius: 8px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-    z-index: 1000;
-  }
-  
-  /* 호버 효과 */
-  .hovered {
-    fill: #007AE5; /* 호버 시 파란색으로 변경 */
-    transition: fill 0.3s ease;
-  }
+
   
   /* 말풍선 새로운 디자인 */
-  
   .thought {
-    align-items:center !important;
-    align-content:center !important;
-    padding:0 10% !important;
-    display:flex !important;
-    flex-flow:row wrap !important;
-    background-color:#fff !important;
-    padding:20px !important;
-    border-radius:30px !important;
-    min-width:40px !important;
-    max-width:240px !important;
-    min-height:40px !important;
-    margin:20px !important;
-    position:relative !important;
-    align-items:center !important;
-    justify-content:center !important;
-    text-align:center !important;
+    align-items: center;
+    align-content: center;
+    padding: 0 10%;
+    display: flex;
+    flex-flow: row wrap;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 30px;
+    min-width: 40px;
+    max-width: 240px;
+    min-height: 40px;
+    margin: 20px;
+    position: relative;
+    justify-content: center;
+    text-align: center;
     z-index: 1;
   }
   
   .thought:before,
   .thought:after {
-    content:"" !important;
-    background-color:#fff !important;
-    border-radius:50% !important;
-    display:block !important;
-    position:absolute !important;
-    z-index:-1 !important;
+    content: "";
+    background-color: #fff;
+    border-radius: 50%;
+    display: block;
+    position: absolute;
+    z-index: -1;
   }
   
   .thought:before {
-    width:44px !important;
-    height:44px !important;
-    top:-12px !important;
-    left:28px !important;
-    box-shadow:-50px 30px 0 -12px #fff !important;
+    width: 44px;
+    height: 44px;
+    top: -12px;
+    left: 28px;
+    box-shadow: -50px 30px 0 -12px #fff;
   }
   
   .thought:after {
-    bottom:-10px !important;
-    right:26px !important;
-    width:30px !important;
-    height:30px !important;
-    box-shadow:40px -34px 0 0 #fff,
-               -28px -6px 0 -2px #fff,
-               -24px 17px 0 -6px #fff,
-               -5px 25px 0 -10px #fff !important;
+    bottom: -10px;
+    right: 26px;
+    width: 30px;
+    height: 30px;
+    box-shadow: 40px -34px 0 0 #fff, -28px -6px 0 -2px #fff,
+                -24px 17px 0 -6px #fff, -5px 25px 0 -10px #fff;
   }
-  
   
   .logo-container {
     position: absolute;
