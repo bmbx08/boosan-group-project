@@ -1,0 +1,304 @@
+@keyframes waddle {
+    0% {
+      transform: translate(-50%, -50%) rotate(0deg);
+    }
+    25% {
+      transform: translate(-50%, -50%) rotate(2deg); /* 약간 좌우로 흔들리게 */
+    }
+    50% {
+      transform: translate(-50%, -50%) rotate(0deg); /* 중심으로 돌아옴 */
+    }
+    75% {
+      transform: translate(-50%, -50%) rotate(-2deg); /* 반대쪽으로 흔들리게 */
+    }
+    100% {
+      transform: translate(-50%, -50%) rotate(0deg); /* 다시 중심으로 */
+    }
+  }
+  
+  /*apartment*/
+  .aptImg1 { /* 부산진구 */
+    position: absolute;
+    left: 50%;
+    top: 13%;
+    z-index: 1;
+    width: 7vh;
+    height: 7vh;
+    transform-origin: center bottom;
+    cursor: pointer;
+  
+  }
+  .aptImg2 { /* 서구 */
+    position: absolute;
+    left: 45%;
+    top: 45%;
+    width: 7vh;
+    height: 7vh;
+    transform-origin: center bottom;
+    cursor: pointer;
+  }
+  .aptImg3 { /* 동구 */
+    position: absolute;
+    left: 51%;
+    top: 40%;
+    width: 7vh;
+    height: 7vh;
+    transform-origin: center bottom;
+    cursor: pointer;
+  }
+  .aptImg4 { /* 중구 */
+    position: absolute;
+    left: 50%;
+    top: 57.5%;
+    width: 5vh;
+    height: 5vh;
+    transform-origin: center bottom;
+    cursor: pointer;
+  }
+  .aptImg5 {/* 영도구 */
+    position: absolute;
+    left: 55%;
+    top: 70%;
+    width: 7vh;
+    height: 7vh;
+    transform-origin: center bottom;
+    cursor: pointer;
+  }
+  .aptImg6{ /* 해운대구 */
+    position: absolute;
+    left: 53%;
+    top: 30%;
+    width: 7vh;
+    height: 7vh;
+    transform-origin: center bottom;
+    cursor: pointer;
+  }
+  .aptImg7{ /* 수영구 */
+    position: absolute;
+    left: 47%;
+    top: 47%;
+    width: 7vh;
+    height: 7vh;
+    transform-origin: center bottom;
+    cursor: pointer;
+  }
+  .aptImg8{ /* 남구 */
+    position: absolute;
+    left: 42%;
+    top: 82%;
+    width: 7vh;
+    height: 7vh;
+    transform-origin: center bottom;
+    cursor: pointer;
+  }
+  .aptImg9{ /* 금정구 */
+    position: absolute;
+    left: 50%;
+    top: 25%;
+    width: 7vh;
+    height: 7vh;
+    transform-origin: center bottom;
+    cursor: pointer;
+  }
+  .aptImg10{ /* 동래구 */
+    position: absolute;
+    left: 56%;
+    top: 62%;
+    width: 7vh;
+    height: 7vh;
+    transform-origin: center bottom;
+    cursor: pointer;
+  }
+
+  .aptImg11{ /* 연제구 */
+    position: absolute;
+    left: 54%;
+    top: 84%;
+    width: 7vh;
+    height: 7vh;
+    transform-origin: center bottom;
+    cursor: pointer;
+  }
+  .aptImg12{ /* 북구 */
+    position: absolute;
+    left: 59%;
+    top: 16%;
+    width: 7vh;
+    height: 7vh;
+    transform-origin: center bottom;
+    cursor: pointer;
+  }
+
+  .aptImg13{ /* 사상구 */
+    position: absolute;
+    left: 53%;
+    top: 55%;
+    width: 7vh;
+    height: 7vh;
+    transform-origin: center bottom;
+    cursor: pointer;
+  }
+
+  .aptImg14{ /* 사하구 */
+    position: absolute;
+    left: 52%;
+    top: 80%;
+    width: 7vh;
+    height: 7vh;
+    transform-origin: center bottom;
+    cursor: pointer;
+  }
+  .aptImg15{ /* 강서구 */
+    position: absolute;
+    left: 38%;
+    top: 50%;
+    width: 7vh;
+    height: 7vh;
+    transform-origin: center bottom;
+    cursor: pointer;
+  }
+
+  .aptImg16{ /* 기장군 */
+    position: absolute;
+    left: 60%;
+    top: 35%;
+    width: 7vh;
+    height: 7vh;
+    transform-origin: center bottom;
+    cursor: pointer;
+  }
+
+
+
+  
+  /*best-food*/
+  .best-food{
+    position: absolute;
+    left: 40%;
+    top: 30%;
+    z-index: 1;
+    width: 5vh;
+    height: 5vh;
+    transform-origin: center bottom;
+    background-size: cover;
+    cursor: pointer;
+  
+  }
+  
+  /* character */
+  
+  .house-find-page {
+    position: relative;
+    width: 100%;
+    height: 100vh; /* 화면 높이에 맞게 */
+    background-color:aquamarine;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+
+
+  }
+
+  .map-image{
+    position:absolute;
+    width: 100vw;
+    max-width: 50%;
+    height: 100vh;
+    left: 30%;
+    top: 0;
+    object-fit: contain;
+    border: none;
+  }
+  
+  .character {
+    position: absolute;
+    left: 500px;
+    top: 500px;
+    bottom: 10px;
+    width: 7vw;
+    height: 5.58vw;
+    background-image: url("../../common/images/ramen_girl.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    transform: translate(-50%, -50%); /* 중앙 정렬 */
+  
+    transition: transform 0.1s linear, top 0.1s linear, left 0.1s linear; /* 부드러운 이동 */
+    animation: waddle 1s ease-in-out infinite;
+  }
+  
+  /* 방향키 이동 시 애니메이션 */
+  .moving {
+    animation: walk 0.5s ease-in-out infinite;
+  }
+  
+  /* 건물 클릭 시 이동 애니메이션 */
+  .click-moving {
+    transition: transform 5s ease-in-out, top 5s ease-in-out, left 5s ease-in-out;
+    animation: none; /* 걷는 애니메이션을 중지하고 부드러운 이동 애니메이션만 적용 */
+  }
+  
+  .speech-bubble{
+    position: absolute;
+    transform: translateX(-50%);
+    background: #f1f1f1;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 10px 15px;
+    box-shadow: 0 2px 10px rgb(0, 0, 0, 0.2);
+    z-index: 100;
+    font-size: 14px;
+    color: #333;
+    max-width: 200px;
+    text-align: center;
+  }
+  
+  .speech-bubble::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px; /* 가운데 정렬 */
+    border-width: 5px;
+    border-style: solid;
+    border-color: #f1f1f1 transparent transparent transparent;
+  }
+  
+  /* modal */
+  .modal-style {
+   display: flex;
+   justify-content: center;
+   margin-top: 5rem;
+  }
+  
+  .modal {
+    position : fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000; 
+   
+  }
+  
+  .housing-data{
+    max-height: 60vh;
+    overflow-y: auto;
+  }
+  
+  table{
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  th,td {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+  
+  th{
+    background-color: #f2f2f2;
+  }
