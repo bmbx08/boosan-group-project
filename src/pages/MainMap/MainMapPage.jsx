@@ -79,26 +79,26 @@ const MainMapPage = () => {
       const timer = setTimeout(() => {
         switch (clickedArea) {
           case 'map-area1':
-            navigate('/Western');
+            navigate('/attraction/e');
             break;
           // 다른 지역 설정은 여기에 추가 가능
           case 'map-area2':
-            navigate('/NorthwestAndOutlying');
+            navigate('/attraction/d');
             break;
           case 'map-area3':
-            navigate('/NorthwestAndOutlying');
+            navigate('/attraction/d');
             break;
           case 'map-area4':
-            navigate('/EastCoast');
+            navigate('/attraction/c');
             break;
           case 'map-area5':
-            navigate('/NorthEast');
+            navigate('/attraction/a');
             break;
           case 'map-area6':
-            navigate('/Center');
+            navigate('/attraction/b');
             break;
           case 'map-area7':
-            navigate('/Center');
+            navigate('/attraction/b');
             break;
           default:
             setBackgroundImage(busanDefault);
@@ -123,7 +123,7 @@ const MainMapPage = () => {
           <img src={logoImage} alt="부산 로고" className="logo-image" />
         </div>
       
-      <div className="map-container">
+      <div className="map-container1">
         
         {/* WeatherBox를 오른쪽 상단에 고정 */}
         <div className="weather-box">

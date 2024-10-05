@@ -1,7 +1,7 @@
 import React from 'react'
 import bugeeImage from '../../common/images/부산시마스코트부기.png'
 import './Bugee.css'
-const bugee = () => {
+const Bugee = () => {
   return (
     <div className="bugee-container">
           <div className="thought">
@@ -16,4 +16,4 @@ const bugee = () => {
   )
 }
 
-export default bugee
+export default Bugee;

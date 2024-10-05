@@ -244,7 +244,7 @@ const AttractionMapPage=()=> {
 
         <img src={busan} className="map-button" onClick={goToMain}/>
   
-        <RadioSection handleRadioChange={handleRadioChange} theme={theme}/>
+        <RadioSection id={id} handleRadioChange={handleRadioChange} theme={theme}/>
 
         {/* <img src={tourist} alt="tourist-img" className="tourist" width="150"/> */}
         <img src={boogi} alt="tourist-img" className={`tourist ${id}`}/> {/*부산시 소통캐릭터*/}
