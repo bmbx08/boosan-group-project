@@ -4,16 +4,55 @@
     align-items:center;
     /* margin: 5em; */
     position: relative;
-    background-color: skyblue;  
+    background-color: skyblue;
+    height: 100vh;
+}
+
+.map{
+    height:95vh;
+    width:auto;
+}
+
+.map-button{
+    width: 15em;
+    position: absolute;
+    top: 1.5em;
+    right: 1.5em;
+}
+
+.map-button:hover{
+    width: 16em;
+    top: 1em;
+    right: 1em;
 }
 
 .tourist{
     position:absolute;
-    top: 35em;
+    width: 4em;
 }
 
-.img{
-    width: 5.5em;
+.tourist.a{
+    top: 40%;
+}
+
+.tourist.b{
+    top: 37%;
+    left: 43%;
+}
+
+.tourist.c{
+    top: 27%;
+    left: 46%;
+}
+
+.tourist.d{
+    top: 43%;
+    left: 52%;
+}
+
+.tourist.e{
+    top: 47%;
+    left: 48%;
 }
 
 .icon{
@@ -45,31 +84,6 @@
     border-radius: 50px;
 }
 
-.NorthEast1{
-    top:19.2%;
-    left: 39.17%;
-}
-
-.NorthEast2{
-    top: 9.6%;
-    left: 54.4%;
-}
-
-.NorthEast3{
-    top:55.3%;
-    left: 39.24%;
-}
-
-.NorthEast4{
-    top:66.9%;
-    left: 52.15%;
-}
-
-.NorthEast5{
-    top:72.5%;
-    left: 43.7%;
-}
-
 .radio-section{
     position:absolute;
     right:2em;
@@ -83,11 +97,11 @@
 
 .radio-button{
     display:block;
-    padding: 0.5em 1em;
+    padding: 0.3em 0.6em;
     margin:0.5em;
     background-color: #f1a859;
     color: white;
-    font-size: 1.5em;
+    font-size: 1em;
     border-radius: 0.5em;
     cursor:pointer;
     border: 1px solid #ccc;
