@@ -119,6 +119,37 @@
 }
 
 
+.radio-button1{
+    display:block;
+    padding: 0.3em 0.6em;
+    margin:0.5em;
+    background-color: white;
+    color: black;
+    font-size: 1em;
+    border-radius: 0.5em;
+    cursor:pointer;
+    border: 1px solid #ccc;
+    transition: background-color 0.3s ease;
+}
+
+.hover-text {
+    position: absolute;
+    left: -280px; /* 텍스트를 왼쪽으로 배치 */
+    top: 90%;
+    transform: translateY(-50%);
+    white-space: nowrap;
+    background-color: rgba(0, 0, 0, 0.7); /* 텍스트 배경 색 */
+    color: white; /* 텍스트 색상 */
+    padding: 5px 10px;
+    border-radius: 5px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    font-size: medium;
+  }
+  
+  .radio-button1:hover .hover-text {
+    opacity: 1;
+  }
 
 /* label{
     display:block;

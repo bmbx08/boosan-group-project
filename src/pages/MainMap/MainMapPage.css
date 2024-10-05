@@ -1,5 +1,5 @@
 
-.map-container {
+.map-container1 {
     position: relative;
     width: 100%;
     height: 100vh;
@@ -9,7 +9,7 @@
     background-repeat: no-repeat;
     overflow: hidden;
     transition: background-image 0.5s ease-out;
-    background-color: #007AE5;
+    background-color: skyblue;
   }
   
   .map-svg {
