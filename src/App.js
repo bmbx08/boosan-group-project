@@ -14,7 +14,7 @@ function App() {
         <Route path="/" element={<AppLayout/>}> {/*네브바*/}
           <Route index element={<MainMapPage/>}/> {/*전체 지도*/}
           <Route path="attraction/:id" element={<AttractionMapPage/>}/> {/*관광지 지도*/}
-          <Route path="house/:id" element={<HouseMapPage/>}/>
+          <Route path="house/:id" element={<HouseMapPage/>}/> {/*거주 지도*/}
           <Route path="info">
             <Route index element={<InfoPage/>}/> {/*전체 정보 페이지*/}
             <Route path=":id">
