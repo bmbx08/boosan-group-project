@@ -12,7 +12,7 @@ const AttractionMapData = ({ onSelectAttraction }) => {
       `pageNo=1&` +
       `numOfRows=168&` +
       `resultType=xml`; // XML 형식으로 요청
-
+      
     try {
       const response = await fetch(url + queryParams);
       if (!response.ok) {

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import './AttractionMapStyle.css'
+import './AttractionMapStyle.css';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -29,9 +29,9 @@ const AttractionMapPage = () => {
     setAttractions(filteredAttractions);
   };
 
-  // 아이콘 클릭 시 랜덤한 관광지로 이동
+  // 아이콘 클릭 시 캐릭터가 해당 위치로 이동 후 모달 열기
   const moveToSpot = (top, left, index) => {
-    setShowModal(true); // 모달 열기
+    setCharacterPosition({ top, left }); // 캐릭터 이동
 
     // 관광지 리스트를 랜덤하게 섞기
     const shuffledAttractions = [...attractions].sort(() => Math.random() - 0.5);
@@ -40,6 +40,11 @@ const AttractionMapPage = () => {
     // 랜덤하게 선택된 관광지 인덱스 설정
     const randomIndex = Math.floor(Math.random() * shuffledAttractions.length);
     setSelectedSpot(randomIndex);
+  };
+
+  // 캐릭터가 이동 완료된 후 모달 열기
+  const handleTransitionEnd = () => {
+    setShowModal(true); // 모달 열기
   };
 
   // 모달 닫기 함수
@@ -75,9 +80,14 @@ const AttractionMapPage = () => {
         {/* 캐릭터 */}
         <div
           className="character"
-          style={{ top: characterPosition.top, left: characterPosition.left }}
+          style={{
+            top: characterPosition.top,
+            left: characterPosition.left,
+            transition: 'top 2s, left 2s' // 캐릭터 이동 애니메이션
+          }}
+          onTransitionEnd={handleTransitionEnd} // 애니메이션 완료 시 모달 열기
         >
-          🚶
+          ✈
         </div>
 
         {/* 관광지 아이콘들 */}
