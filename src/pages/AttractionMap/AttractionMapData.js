@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react';
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 const AttractionMapData = ({ onSelectAttraction }) => {
   const [attractions, setAttractions] = useState([]); // 관광지 데이터를 저장할 상태

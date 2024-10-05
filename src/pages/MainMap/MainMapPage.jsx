@@ -123,6 +123,8 @@ const MainMapPage = () => {
           <img src={logoImage} alt="부산 로고" className="logo-image" />
         </div>
       
+
+      
       <div className="map-container">
         
         {/* WeatherBox를 오른쪽 상단에 고정 */}

@@ -114,18 +114,18 @@
   }
   
   /* 모달 콘텐츠 */
-  .modal-content {
+  /* .modal-content {
     background-color: white;
     padding: 20px;
     border-radius: 10px;
     width: 400px;
-    height: 500px;/* 모달의 크기 설정 */
+    height: 500px;
     position: relative;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     z-index: 1000;
-  }
+  } */
   
   /* 모달 닫기 버튼 */
   .close-modal {

@@ -2,7 +2,8 @@ import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
 import { useRef } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import busan from "../../common/images/Busan.png"
 import "./HouseMapPage.style.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Button from "react-bootstrap/Button";
@@ -38,9 +39,7 @@ const HouseMapPage = () => {
   const { id } = useParams();
 
   useEffect(() => {
-    //if(params.id) {
-    //  setImageID(params.id);
-    //}
+
   }, []);
 
   const handleAptClick = (aptRef) => {
@@ -63,18 +62,24 @@ const HouseMapPage = () => {
     }
       */
 
-    calculateDistance(aptRef);
-    if (!isMoving && isWithinRange && !hasDialogStarted) {
-      setIsMoving(true);
-      setHasDialogStarted(true);
-      setTimeout(() => {
-        setIsDialog(true);
-        setIsMoving(false);
-      }, 1000); // Apt img 클릭시 1초 후 대화시작
-    } else if (isWithinRange) {
-      handleAptClickAfterMove(); // 범위 밖에서 클릭하면 이동
-      setIsWithinRange(false);
-    }
+    setShowModal(true);
+      setIsDialog(false);
+    // } catch (error) {
+    //   console.log("Error fetching housing data", error);
+    // }
+
+    // calculateDistance(aptRef);
+    // if (!isMoving && isWithinRange && !hasDialogStarted) {
+    //   setIsMoving(true);
+    //   setHasDialogStarted(true);
+    //   setTimeout(() => {
+    //     setIsDialog(true);
+    //     setIsMoving(false);
+    //   }, 1000); // Apt img 클릭시 1초 후 대화시작
+    // } else if (isWithinRange) {
+    //   handleAptClickAfterMove(); // 범위 밖에서 클릭하면 이동
+    //   setIsWithinRange(false);
+    // }
   };
 
   const handleAptClickAfterMove = () => {
@@ -158,6 +163,12 @@ const HouseMapPage = () => {
     }
   };
 
+  const navigate = useNavigate();
+
+  const goToMain=()=>{
+    navigate('/');
+  }
+
   useEffect(() => {
     window.addEventListener("keydown", handleKeyDown);
     calculateDistance();
@@ -171,11 +182,14 @@ const HouseMapPage = () => {
       {/* 아파트 사진 넣어주기 */}
 
       {/*맛집  사진 넣어주기 */}
-      <div
+      {/* <div
         className="best-food"
         style={{ display: showModal ? "none" : "block" }}
-      ></div>
+      ></div> */}
       {/* 이후 캐릭터 설정  */}
+
+      <img src={busan} className="map-button" onClick={goToMain}/>
+
       <div className={`house-find-page`}>
         {id === "a" && ( // 부산진구, 서구, 동구, 중구, 영도구
           <div>
@@ -185,35 +199,35 @@ const HouseMapPage = () => {
               onClick={() => handleAptClick(aptImg1Ref)}
               ref={aptImg1Ref}
               className="aptImg1"
-              style={{ display: showModal ? "none" : "block" }}
+              // style={{ display: showModal ? "none" : "block" }}
             />
             <img
               src={apartment}
               className="aptImg2"
               onClick={() => handleAptClick(aptImg2Ref)}
               ref={aptImg2Ref}
-              style={{ display: showModal ? "none" : "block" }}
+              // style={{ display: showModal ? "none" : "block" }}
             />
             <img
               src={apartment}
               className="aptImg3"
               onClick={() => handleAptClick(aptImg3Ref)}
               ref={aptImg3Ref}
-              style={{ display: showModal ? "none" : "block" }}
+              // style={{ display: showModal ? "none" : "block" }}
             />
             <img
               src={apartment}
               className="aptImg4"
               onClick={() => handleAptClick(aptImg4Ref)}
               ref={aptImg4Ref}
-              style={{ display: showModal ? "none" : "block" }}
+              // style={{ display: showModal ? "none" : "block" }}
             />
             <img
               src={apartment}
               className="aptImg5"
               onClick={() => handleAptClick(aptImg5Ref)}
               ref={aptImg5Ref}
-              style={{ display: showModal ? "none" : "block" }}
+              // style={{ display: showModal ? "none" : "block" }}
             />
           </div>
         )}
@@ -225,21 +239,21 @@ const HouseMapPage = () => {
               onClick={handleAptClick}
               ref={aptImg6Ref}
               className="aptImg6"
-              style={{ display: showModal ? "none" : "block" }}
+              // style={{ display: showModal ? "none" : "block" }}
             />
             <img
               src={apartment}
               onClick={handleAptClick}
               ref={aptImg7Ref}
               className="aptImg7"
-              style={{ display: showModal ? "none" : "block" }}
+              // style={{ display: showModal ? "none" : "block" }}
             />
             <img
               src={apartment}
               onClick={handleAptClick}
               ref={aptImg8Ref}
               className="aptImg8"
-              style={{ display: showModal ? "none" : "block" }}
+              // style={{ display: showModal ? "none" : "block" }}
             />
           </div>
         )}
@@ -251,21 +265,21 @@ const HouseMapPage = () => {
               onClick={handleAptClick(aptImg1Ref)}
               ref={aptImg1Ref}
               className="aptImg9"
-              style={{ display: showModal ? "none" : "block" }}
+              // style={{ display: showModal ? "none" : "block" }}
             />
             <img
               src={apartment}
-              onClick={handleAptClick(aptImg2Ref)}
+              onClick={handleAptClick(aptImg2Ref)} 
               ref={aptImg2Ref}
               className="aptImg10"
-              style={{ display: showModal ? "none" : "block" }}
+              // style={{ display: showModal ? "none" : "block" }}
             />
             <img
               src={apartment}
               onClick={handleAptClick(aptImg3Ref)}
               ref={aptImg3Ref}
               className="aptImg11"
-              style={{ display: showModal ? "none" : "block" }}
+              // style={{ display: showModal ? "none" : "block" }}
             />
           </div>
         )}
@@ -277,21 +291,21 @@ const HouseMapPage = () => {
               onClick={handleAptClick}
               ref={aptImg1Ref}
               className="aptImg12"
-              style={{ display: showModal ? "none" : "block" }}
+              // style={{ display: showModal ? "none" : "block" }}
             />
             <img
               src={apartment}
               onClick={handleAptClick}
               ref={aptImg2Ref}
               className="aptImg13"
-              style={{ display: showModal ? "none" : "block" }}
+              // style={{ display: showModal ? "none" : "block" }}
             />
             <img
               src={apartment}
               onClick={handleAptClick}
               ref={aptImg2Ref}
               className="aptImg14"
-              style={{ display: showModal ? "none" : "block" }}
+              // style={{ display: showModal ? "none" : "block" }}
             />
           </div>
         )}
@@ -303,14 +317,14 @@ const HouseMapPage = () => {
               onClick={handleAptClick}
               ref={aptImg1Ref}
               className="aptImg15"
-              style={{ display: showModal ? "none" : "block" }}
+              // style={{ display: showModal ? "none" : "block" }}
             />
             <img
               src={apartment}
               onClick={handleAptClick}
               ref={aptImg2Ref}
               className="aptImg16"
-              style={{ display: showModal ? "none" : "block" }}
+              // style={{ display: showModal ? "none" : "block" }}
             />
           </div>
         )}

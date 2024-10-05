@@ -21,7 +21,7 @@
     position: absolute;
     left: 50%;
     top: 13%;
-    z-index: 1;
+    /* z-index: 1; */
     width: 7vh;
     height: 7vh;
     transform-origin: center bottom;
@@ -191,13 +191,17 @@
     position: relative;
     width: 100%;
     height: 100vh; /* 화면 높이에 맞게 */
-    background-color:aquamarine;
+    background-color:skyblue;
     display:flex;
     justify-content: center;
     align-items: center;
     overflow: hidden;
 
 
+  }
+
+  .map-button{
+    z-index: 1;
   }
 
   .map-image{
@@ -213,18 +217,18 @@
   
   .character {
     position: absolute;
-    left: 500px;
+    left: 400px;
     top: 500px;
     bottom: 10px;
-    width: 7vw;
-    height: 5.58vw;
-    background-image: url("../../common/images/ramen_girl.png");
+    width: 6.3vw;
+    height: 9vw;
+    background-image: url("../../common/images/Boogi.png");
     background-repeat: no-repeat;
     background-size: cover;
-    transform: translate(-50%, -50%); /* 중앙 정렬 */
+    /* transform: translate(-50%, -50%); 중앙 정렬 */
   
-    transition: transform 0.1s linear, top 0.1s linear, left 0.1s linear; /* 부드러운 이동 */
-    animation: waddle 1s ease-in-out infinite;
+    /* transition: transform 0.1s linear, top 0.1s linear, left 0.1s linear; 
+    animation: waddle 1s ease-in-out infinite; */
   }
   
   /* 방향키 이동 시 애니메이션 */
