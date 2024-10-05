@@ -33,7 +33,7 @@ const InfoPage = () => {
       setCultureData(filterCulture(attrData));
     }
   },[attrData])
-
+  
   return (
     <div>
       Info Page
