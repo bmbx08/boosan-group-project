@@ -39,6 +39,7 @@ const AttractionMapPage=()=> {
   const {id} = useParams();
 
   const handleOnAttractionAPISuccess=()=>{
+    console.log("SUCCESS!!!!!!!!!!!!!!");
     setHistoryData(filterHistory(attrData));
     setNatureData(filterNature(attrData));
     setCultureData(filterCulture(attrData));
@@ -46,14 +47,14 @@ const AttractionMapPage=()=> {
 
   const {
     data:rstrData, isLoading:rstrIsLoading, isError:rstrIsError, error:rstrError
-  } = useRestaurantDataQuery({onSuccess:handleOnAttractionAPISuccess}) //API호출 성공시 데이터 장르별 필터
-  console.log("history, nature, culture", historyData, natureData, cultureData);
+  } = useRestaurantDataQuery() //API호출 성공시 데이터 장르별 필터
   console.log("rstrData", rstrData, rstrIsLoading);
   console.log("rstrError", rstrIsError, rstrError);
 
-  const {
-    data:attrData,isLoading:attrIsLoading,isError:attrIsError,error:attrError
-  } = useAttractionDataQuery();
+  const {data:attrData,isLoading:attrIsLoading,isError:attrIsError,error:attrError} = useAttractionDataQuery({
+    onSuccess:handleOnAttractionAPISuccess,
+  });
+  console.log("history, nature, culture", historyData, natureData, cultureData);
   console.log("attrData", attrData, attrIsLoading);
   console.log("attrError", attrIsError, attrError);
 
@@ -122,7 +123,7 @@ const AttractionMapPage=()=> {
         }else if(theme==="nature"){
           filterByLoc(natureData);
         }else if(theme==="culture"){
-          filterByLoc(cultureData);
+          filterByLoc(cultureData); 
         }else if(theme==="food"){
           filterByLoc(rstrData);
         }
