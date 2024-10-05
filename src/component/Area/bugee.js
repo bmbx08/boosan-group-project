@@ -1,5 +1,6 @@
 import React from 'react'
 import bugeeImage from '../../common/images/부산시마스코트부기.png'
+import './Bugee.css'
 const bugee = () => {
   return (
     <div className="bugee-container">
