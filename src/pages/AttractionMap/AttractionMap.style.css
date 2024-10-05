@@ -1,9 +1,10 @@
 .map-container{
     display:flex;
     justify-content: center;
-    margin: 5em;
+    align-items:center;
+    /* margin: 5em; */
     position: relative;
-    background-color: skyblue;
+    background-color: skyblue;  
 }
 
 .tourist{
@@ -44,27 +45,27 @@
     border-radius: 50px;
 }
 
-.pos1{
+.NorthEast1{
     top:19.2%;
     left: 39.17%;
 }
 
-.pos2{
+.NorthEast2{
     top: 9.6%;
     left: 54.4%;
 }
 
-.pos3{
+.NorthEast3{
     top:55.3%;
     left: 39.24%;
 }
 
-.pos4{
+.NorthEast4{
     top:66.9%;
     left: 52.15%;
 }
 
-.pos5{
+.NorthEast5{
     top:72.5%;
     left: 43.7%;
 }

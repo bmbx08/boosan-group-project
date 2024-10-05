@@ -1,5 +1,5 @@
 import React from 'react'
-import restaurant from "../../../common/images/attractionMap/restaurant.png"
+import restaurant from "../../../../common/images/attractionMap/restaurant.png"
 
 const RstrIcon = ({loc, showNum, index, handleShow, fade}) => {
   return (
@@ -9,4 +9,4 @@ const RstrIcon = ({loc, showNum, index, handleShow, fade}) => {
   )
 }
 
-export default RstrIcon
+export default RstrIcon;
