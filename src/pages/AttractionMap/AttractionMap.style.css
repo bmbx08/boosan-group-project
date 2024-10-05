@@ -1,0 +1,125 @@
+.map-container{
+    display:flex;
+    justify-content: center;
+    align-items:center;
+    /* margin: 5em; */
+    position: relative;
+    background-color: skyblue;
+    height: 100vh;
+}
+
+.map{
+    height:95vh;
+    width:auto;
+}
+
+.map-button{
+    width: 15em;
+    position: absolute;
+    top: 1.5em;
+    right: 1.5em;
+}
+
+.map-button:hover{
+    width: 16em;
+    top: 1em;
+    right: 1em;
+}
+
+.tourist{
+    position:absolute;
+    width: 4em;
+}
+
+.tourist.a{
+    top: 40%;
+}
+
+.tourist.b{
+    top: 37%;
+    left: 43%;
+}
+
+.tourist.c{
+    top: 27%;
+    left: 46%;
+}
+
+.tourist.d{
+    top: 43%;
+    left: 52%;
+}
+
+.tourist.e{
+    top: 47%;
+    left: 48%;
+}
+
+.icon{
+    position:absolute;
+    opacity: 0;
+    transition: 0.3s ease;
+}
+
+.icon:hover{
+    transform: scale(1.1);
+    transition: ease-in-out 0.1s;
+}
+
+.fade-in{
+    opacity: 1;
+}
+
+.fade-out{
+    opacity:0;
+}
+
+.food{
+    border-radius: 50px;
+    border: 0px solid rgb(242,191,99);
+}
+
+.food:hover{
+    border: 3px solid rgb(242,191,99);
+    border-radius: 50px;
+}
+
+.radio-section{
+    position:absolute;
+    right:2em;
+    bottom:2em;
+    font-size: 2em;
+}
+
+.radio-nodisplay{
+    display:none;
+}
+
+.radio-button{
+    display:block;
+    padding: 0.3em 0.6em;
+    margin:0.5em;
+    background-color: #f1a859;
+    color: white;
+    font-size: 1em;
+    border-radius: 0.5em;
+    cursor:pointer;
+    border: 1px solid #ccc;
+    transition: background-color 0.3s ease;
+}
+
+.radio-button:hover{
+    background-color:#efbf8b;
+}
+
+.radio-button.active{
+    background-color: #f7860e;
+    color:white;
+    border: 1px solid #ff8400;
+}
+
+
+
+/* label{
+    display:block;
+} */

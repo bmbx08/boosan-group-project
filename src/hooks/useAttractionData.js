@@ -12,5 +12,5 @@ export const useAttractionDataQuery=()=>{
         queryKey:['attraction'],
         queryFn:fetchAttractionData,
         select:(result)=>result.data.getAttractionKr.item,
-    })
+    });
 }

@@ -1,141 +1,296 @@
-import React, { useState } from "react";
-import './AttractionMapStyle.css';
-import Button from 'react-bootstrap/Button';
-import Modal from 'react-bootstrap/Modal';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import AttractionMapData from './AttractionMapData';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
-import Slider from "react-slick";
+import { useEffect, useState } from "react";
+// import northwest from "../../common/images/attractionMap/northwest.png";
+// import tourist from "../../common/images/attractionMap/tourist.png"
+import attractionA from "../../common/images/NorthEast.png"
+import attractionB from "../../common/images/Center.png"
+import attractionC from "../../common/images/EastCoast.png"
+import attractionD from "../../common/images/NorthwestAndOutlying.png"
+import attractionE from "../../common/images/Western.png"
+import boogi from "../../common/images/attractionMap/Boogi.png";
+import busan from "../../common/images/Busan.png"
+import RstrModal from "./components/RstrModal";
+import { useNavigate, useParams } from "react-router-dom";
+import { filterHistory } from "./function/filterHistory";
+import { filterCulture } from "./function/filterCulture";
+import { filterNature } from "./function/filterNature";
+import {useRestaurantDataQuery} from "../../hooks/useRestaurantData";
+import {useAttractionDataQuery} from "../../hooks/useAttractionData" ;
+import RadioSection from "./components/RadioSection";
+import 'bootstrap/dist/css/bootstrap.min.css'
+import "./AttractionMap.style.css";
+import "./AttractionIconLoc.style.css";
+import AttrIconSection from "./components/AttrIconSection";
+import RstrIconSection from "./components/RstrIconSection";
 
-// 각 관광지 아이콘과 좌표 설정
-const touristSpots = [
-  { top: "10%", left: "49%" },
-  { top: "5%", left: "55%" },
-  { top: "50%", left: "41%" },
-  { top: "100%", left: "42%" },
-];
+const AttractionMapPage=()=> {
+  const [show, setShow] = useState(false);
+  const [modalData, setModalData] = useState(null);
+  const [keumData, setKeumData]= useState(null);
+  const [dongData, setDongData]= useState(null);
+  const [yeonData, setYeonData] = useState(null);
+  const [jinguData, setJinguData]= useState(null);
+  const [seoguData, setSeoguData]= useState(null);
+  const [donguData, setDonguData]= useState(null);
+  const [joonguData, setJoonguData]= useState(null);
+  const [yeongdoData, setYeongdoData]= useState(null);
+  const [haeoonData, setHaeoonData]= useState(null);
+  const [youngData, setYoungData]= useState(null);
+  const [namguData, setNamguData]= useState(null);
+  const [gangData, setGangData]= useState(null);
+  const [kijangData, setKijangData]= useState(null);
+  const [bookData, setBookData]= useState(null);
+  const [sangData, setSangData]= useState(null);
+  const [sahaData, setSahaData]= useState(null);
 
-const AttractionMapPage = () => {
+  const [historyData, setHistoryData]= useState(null);
+  const [natureData, setNatureData] = useState(null);
+  const [cultureData, setCultureData] =  useState(null);
 
-  const [characterPosition, setCharacterPosition] = useState({ top: "50%", left: "50%" });
-  const [showModal, setShowModal] = useState(false);
-  const [attractions, setAttractions] = useState([]); // API로부터 필터링된 관광지 저장
-  const [randomizedAttractions, setRandomizedAttractions] = useState([]); // 무작위로 섞은 관광지 목록
-  const [selectedSpot, setSelectedSpot] = useState(0); // 선택된 관광지 인덱스
+  const [theme, setTheme] = useState(null);
 
-  // 관광지를 필터링한 데이터를 받아옴
-  const handleSelectAttraction = (filteredAttractions) => {
-    setAttractions(filteredAttractions);
-  };
+  const [fade,setFade] = useState(true);
 
-  // 아이콘 클릭 시 캐릭터가 해당 위치로 이동 후 모달 열기
-  const moveToSpot = (top, left, index) => {
-    setCharacterPosition({ top, left }); // 캐릭터 이동
+  const {id} = useParams();
 
-    // 관광지 리스트를 랜덤하게 섞기
-    const shuffledAttractions = [...attractions].sort(() => Math.random() - 0.5);
-    setRandomizedAttractions(shuffledAttractions); // 무작위로 섞은 관광지 목록 저장
+  // const handleOnAttractionAPISuccess=()=>{
+  //   console.log("SUCCESS!!!!!!!!!!!!!!");
+  //   setHistoryData(filterHistory(attrData));
+  //   setNatureData(filterNature(attrData));
+  //   setCultureData(filterCulture(attrData));
+  // }
 
-    // 랜덤하게 선택된 관광지 인덱스 설정
-    const randomIndex = Math.floor(Math.random() * shuffledAttractions.length);
-    setSelectedSpot(randomIndex);
-  };
+  const navigate=useNavigate();
 
-  // 캐릭터가 이동 완료된 후 모달 열기
-  const handleTransitionEnd = () => {
-    setShowModal(true); // 모달 열기
-  };
+  const goToMain=()=>{
+    navigate('/');
+  }
 
-  // 모달 닫기 함수
-  const handleClose = () => {
-    setShowModal(false); // 모달 닫기 상태 설정
-  };
+  const {
+    data:rstrData, isLoading:rstrIsLoading, isError:rstrIsError, error:rstrError
+  } = useRestaurantDataQuery() //API호출 성공시 데이터 장르별 필터
+  // console.log("rstrData", rstrData, rstrIsLoading);
+  // console.log("rstrError", rstrIsError, rstrError);
 
-  // 전체 관광지 목록 페이지로 이동하는 함수 (가상의 URL)
-  const goToAttractionsList = () => {
-    window.location.href = "/info"; // 실제 URL로 수정
-  };
+  const {data:attrData,isLoading:attrIsLoading,isError:attrIsError,error:attrError} = useAttractionDataQuery();
+  // console.log("attrData", attrData, attrIsLoading);
+  // console.log("attrError", attrIsError, attrError);
+  // console.log("history, nature, culture", historyData, natureData, cultureData);
 
-  // 슬라이더 설정
-  const sliderSettings = {
-    dots: false, // 점 없애기
-    infinite: true, // 무한 슬라이딩 설정
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-  };
+  const handleClose = () => setShow(false);
 
-  // 최대 두 문장까지만 보여주는 함수
-  const getShortDescription = (description) => {
-    const sentences = description.split('. ');
-    return sentences.slice(0, 2).join('. ') + (sentences.length > 2 ? '.' : '');
-  };
+  const handleShow = (loc, num)=>{
+    if(loc==="keum") {setModalData(keumData?keumData[num]:null);}
+    else if(loc==="dong") {setModalData(dongData?dongData[num]:null);}
+    else if(loc==="yeon") {setModalData(yeonData?yeonData[num]:null);}
+    else if(loc==="jingu") {setModalData(jinguData?jinguData[num]:null);}
+    else if(loc==="seogu") {setModalData(seoguData?seoguData[num]:null);}
+    else if(loc==="dongu") {setModalData(donguData?donguData[num]:null);}
+    else if(loc==="joongu") {setModalData(joonguData?joonguData[num]:null);}
+    else if(loc==="yeongdo") {setModalData(yeongdoData?yeongdoData[num]:null);}
+    else if(loc==="haeoon") {setModalData(haeoonData?haeoonData[num]:null);}
+    else if(loc==="young") {setModalData(youngData?youngData[num]:null);}
+    else if(loc==="namgu") {setModalData(namguData?namguData[num]:null);}
+    else if(loc==="gang") {setModalData(gangData?gangData[num]:null);}
+    else if(loc==="kijang") {setModalData(kijangData?kijangData[num]:null);}
+    else if(loc==="book") {setModalData(bookData?bookData[num]:null);}
+    else if(loc==="sang") {setModalData(sangData?sangData[num]:null);}
+    else if(loc==="saha") {setModalData(sahaData?sahaData[num]:null);}
+    setShow(true);
+  }
+
+  //keum,dong,yeon
+
+  const filterByLoc=(data)=>{
+    console.log(data);
+    let keum = data?.filter((item)=>{
+      return item.GUGUN_NM === '금정구'
+    })
+    setKeumData(keum);
+    console.log("금정구 데이터", keum);
+    let dong = data.filter((item)=>{
+      return item.GUGUN_NM === '동래구'
+    })
+    setDongData(dong);
+    console.log("동래구 데이터", dong);
+    let yeon = data.filter((item)=>{
+      return item.GUGUN_NM === '연제구'
+    })
+    setYeonData(yeon);
+    console.log("연제구 데이터", yeon);
+    let jingu = data.filter((item)=>{
+      return item.GUGUN_NM === '부산진구'
+    })
+    setJinguData(jingu);
+    console.log("부산진구 데이터", jingu);
+    let seogu = data.filter((item)=>{
+      return item.GUGUN_NM === '서구'
+    })
+    setSeoguData(seogu);
+    console.log("서구 데이터", seogu);
+    let dongu = data.filter((item)=>{
+      return item.GUGUN_NM === '동구'
+    })
+    setDonguData(dongu);
+    console.log("동구 데이터", dongu);
+    let joongu = data.filter((item)=>{
+      return item.GUGUN_NM === '중구'
+    })
+    setJoonguData(joongu);
+    console.log("중구 데이터", joongu);
+    let yeongdo = data.filter((item)=>{
+      return item.GUGUN_NM === '영도구'
+    })
+    setYeongdoData(yeongdo);
+    console.log("영도구 데이터", yeongdo);
+    let haeoon = data.filter((item)=>{
+      return item.GUGUN_NM === '해운대구'
+    })
+    setHaeoonData(haeoon);
+    console.log("해운대구 데이터", haeoon);
+    let young = data.filter((item)=>{
+      return item.GUGUN_NM === '수영구'
+    })
+    setYoungData(young);
+    console.log("수영구 데이터", young);
+    let namgu = data.filter((item)=>{
+      return item.GUGUN_NM === '남구'
+    })
+    setNamguData(namgu);
+    console.log("남구 데이터", namgu);
+    let gang = data.filter((item)=>{
+      return item.GUGUN_NM === '강서구'
+    })
+    setGangData(gang);
+    console.log("강서구 데이터", gang);
+    let kijang = data.filter((item)=>{
+      return item.GUGUN_NM === '기장군'
+    })
+    setKijangData(kijang);
+    console.log("기장군 데이터", kijang);
+    let book = data.filter((item)=>{
+      return item.GUGUN_NM === '북구'
+    })
+    setBookData(book);
+    console.log("북구 데이터", book);
+    let sang = data.filter((item)=>{
+      return item.GUGUN_NM === '사상구'
+    })
+    setSangData(sang);
+    console.log("사상구 데이터", sang);
+    let saha = data.filter((item)=>{
+      return item.GUGUN_NM === '사하구'
+    })
+    setSahaData(saha);
+    console.log("사하구 데이터", saha);
+  }
+
+  const handleRadioChange=(event)=>{
+    const selectedTheme = event.target.value;
+    let beforeFilter;
+    setFade(false);
+
+    setTimeout(() => {
+      if(selectedTheme === "history"){
+        beforeFilter = "history";
+      } else if(selectedTheme ==="nature"){
+        beforeFilter = "nature";
+      } else if(selectedTheme === "culture"){
+        beforeFilter = "culture";
+      }else if(selectedTheme === "food"){
+        beforeFilter = "food";
+      }
+
+      if(beforeFilter){
+        setTheme(beforeFilter);
+      }
+      setTimeout(() => {
+        setFade(true);
+      }, 100); //상태 업데이트 미리 시작되게끔 설정
+    }, 300);
+  }
+
+  useEffect(()=>{
+    if(attrData){
+      if(attrData&&theme===null){
+        setHistoryData(filterHistory(attrData));
+        setNatureData(filterNature(attrData));
+        setCultureData(filterCulture(attrData));
+      }
+    }
+
+    if(theme){
+      if(historyData||natureData||cultureData){ //데이터 가져오기 전 라디오 누를 때 에러 방지
+        if(theme==="history"){
+          filterByLoc(historyData);
+        }else if(theme==="nature"){
+          filterByLoc(natureData);
+        }else if(theme==="culture"){
+          filterByLoc(cultureData); 
+        }else if(theme==="food"){
+          filterByLoc(rstrData);
+        }
+      }
+    }
+  },[theme,attrData]);
 
   return (
-    <div className="Wt">
-      <AttractionMapData onSelectAttraction={handleSelectAttraction} />
+    <div>
+      <div className="map-container">
+        {id==="a"&&<img src={attractionA} alt="busan-map" className="map" width="800"/>}
+        {id==="b"&&<img src={attractionB} alt="busan-map" className="map" width="800"/>}
+        {id==="c"&&<img src={attractionC} alt="busan-map" className="map" width="800"/>}
+        {id==="d"&&<img src={attractionD} alt="busan-map" className="map" height="1000"/>}
+        {id==="e"&&<img src={attractionE} alt="busan-map" className="map" width="800"/>}
 
-      <div className="map">
-        {/* 캐릭터 */}
-        <div
-          className="character"
-          style={{
-            top: characterPosition.top,
-            left: characterPosition.left,
-            transition: 'top 2s, left 2s' // 캐릭터 이동 애니메이션
-          }}
-          onTransitionEnd={handleTransitionEnd} // 애니메이션 완료 시 모달 열기
-        >
-          ✈
-        </div>
+        <img src={busan} className="map-button" onClick={goToMain}/>
+  
+        <RadioSection handleRadioChange={handleRadioChange} theme={theme}/>
 
-        {/* 관광지 아이콘들 */}
-        {touristSpots.map((spot, index) => (
-          <div key={index}>
-            <div
-              className="tourist-spot"
-              style={{ top: spot.top, left: spot.left }}
-              onClick={() => moveToSpot(spot.top, spot.left, index)}
-            >
-              📍
-            </div>
-          </div>
-        ))}
-
-        {/* 모달로 랜덤 관광지 정보 표시 */}
-        {showModal && randomizedAttractions.length > 0 && (
-          <Modal show={showModal} onHide={handleClose} centered>
-            <Modal.Body style={{ maxHeight: '80vh', padding: '10px' }}>
-              <div style={{ textAlign: 'center', marginBottom: '10px', fontSize: '16px', color: 'gray' }}>
-                옆으로 넘기시면 다른 관광지를 볼 수 있어요!
-              </div>
-              <Slider {...sliderSettings}>
-                {randomizedAttractions.map((attraction, index) => (
-                  <div key={index}>
-                    <h5>{attraction.title}</h5>
-                    <img
-                      src={attraction.imageUrl}
-                      alt={attraction.title}
-                      style={{ width: '100%', height: 'auto' }}
-                    />
-                    <p><strong>주소:</strong> {attraction.address}</p>
-                    <p><strong>상세 내용:</strong> {getShortDescription(attraction.description)}</p>
-                  </div>
-                ))}
-              </Slider>
-              <Button variant="primary" onClick={goToAttractionsList} style={{ marginTop: '4px' }}>
-                전체 관광지 보기
-              </Button>
-            </Modal.Body>
-            <Modal.Footer>
-              <Button variant="secondary" onClick={handleClose} className="ModalButton">
-                닫기
-              </Button>
-            </Modal.Footer>
-          </Modal>
-        )}
+        {/* <img src={tourist} alt="tourist-img" className="tourist" width="150"/> */}
+        <img src={boogi} alt="tourist-img" className={`tourist ${id}`}/> {/*부산시 소통캐릭터*/}
+        {theme==="history" &&
+          <> {/* NorthEast, Center, EastCoast, NorthwestAndOutlying, Western */}
+            <AttrIconSection id={id} theme={theme} handleShow={handleShow} fade={fade}/>
+            {/* <AttrIcon loc="keum" theme={theme} showNum={0} index={1} handleShow={handleShow} fade={fade}/>
+            <AttrIcon loc="keum" theme={theme} showNum={1} index={2} handleShow={handleShow} fade={fade}/>
+            <AttrIcon loc="dong" theme={theme} showNum={0} index={3} handleShow={handleShow} fade={fade}/>
+            <AttrIcon loc="dong" theme={theme} showNum={1} index={4} handleShow={handleShow} fade={fade}/>
+            <AttrIcon loc="yeon" theme={theme} showNum={0} index={5} handleShow={handleShow} fade={fade}/> */}
+          </>
+        }
+        {theme==="nature" &&
+          <>
+            <AttrIconSection id={id} theme={theme} handleShow={handleShow} fade={fade}/>
+            {/* <AttrIcon loc="keum" theme={theme} showNum={0} index={1} handleShow={handleShow} fade={fade}/>
+            <AttrIcon loc="keum" theme={theme} showNum={1} index={2} handleShow={handleShow} fade={fade}/>
+            <AttrIcon loc="dong" theme={theme} showNum={0} index={3} handleShow={handleShow} fade={fade}/>
+            <AttrIcon loc="dong" theme={theme} showNum={1} index={4} handleShow={handleShow} fade={fade}/>
+            <AttrIcon loc="yeon" theme={theme} showNum={0} index={5} handleShow={handleShow} fade={fade}/> */}
+          </>
+        }
+        {theme==="culture" &&
+          <>
+            <AttrIconSection id={id} theme={theme} handleShow={handleShow} fade={fade}/>
+            {/* <AttrIcon loc="keum" theme={theme} showNum={0} index={1} handleShow={handleShow} fade={fade}/>
+            <AttrIcon loc="keum" theme={theme} showNum={1} index={2} handleShow={handleShow} fade={fade}/>
+            <AttrIcon loc="dong" theme={theme} showNum={0} index={3} handleShow={handleShow} fade={fade}/>
+            <AttrIcon loc="dong" theme={theme} showNum={1} index={4} handleShow={handleShow} fade={fade}/>
+            <AttrIcon loc="yeon" theme={theme} showNum={0} index={5} handleShow={handleShow} fade={fade}/> */}
+          </>
+        }
+        {theme==="food" &&
+          <>
+            <RstrIconSection id={id} handleShow={handleShow} fade={fade}/>
+            {/* <RstrIcon loc="keum" showNum={0} index={1} handleShow={handleShow} fade={fade}/>
+            <RstrIcon loc="keum" showNum={1} index={2} handleShow={handleShow} fade={fade}/>
+            <RstrIcon loc="dong" showNum={0} index={3} handleShow={handleShow} fade={fade}/>
+            <RstrIcon loc="dong" showNum={1} index={4} handleShow={handleShow} fade={fade}/>
+            <RstrIcon loc="yeon" showNum={0} index={5} handleShow={handleShow} fade={fade}/> */}
+          </>
+        }
+        
       </div>
+      <RstrModal data={modalData} theme={theme} show={show} handleClose={handleClose}/>
     </div>
   );
 }
