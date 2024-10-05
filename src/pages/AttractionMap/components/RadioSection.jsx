@@ -1,6 +1,14 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
-const RadioSection = ({handleRadioChange,theme}) => {
+const RadioSection = ({id,handleRadioChange,theme}) => {
+
+  const navigate = useNavigate();
+
+  const goToHousePage = () => {
+    navigate(`/house/${id}`)
+  }
+
     return (
     <div className="radio-section">
       <label className={`radio-button ${theme === "history" ? "active" : ""}`}>
@@ -42,6 +50,17 @@ const RadioSection = ({handleRadioChange,theme}) => {
           onChange={handleRadioChange}
         />
         음식
+      </label>
+      <label className={`radio-button1 `}>
+        <input
+          type="radio"
+          name="options"
+          value="food"
+          className="radio-nodisplay"
+          onChange={goToHousePage}
+        />
+        다음
+        <span className="hover-text">부산은 살기 좋은 곳인지 한 번 볼까?</span>
       </label>
     </div>
   );
