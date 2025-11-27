@@ -47,23 +47,23 @@ const MainMapPage = () => {
     switch (selectedRegion) {
       case '북서부':
         areas = ['map-area2', 'map-area3'];
-        balloon = '북서부 지역: 산업과 자연이 조화를 이루는 지역입니다.';
+        balloon = '북서부 지역: 개발이 활발히 진행중이며 자연 환경이 풍부해요!';
         break;
       case '서부':
         areas = ['map-area1'];
-        balloon = '서부 지역: 다양한 문화와 역사를 자랑하는 지역입니다.';
+        balloon = '서부 지역: 대규모 주거 지역이에요! 넓은 주거 공간과 산업이 발달해 있어요.';
         break;
       case '동부 해안':
         areas = ['map-area4'];
-        balloon = '동부 해안: 해양 관광지로 유명한 지역입니다.';
+        balloon = '동부 해안: 주거 환경이 쾌적하고 상업과 문화 인프라가 발달해 있어요! 부산의 대표적인 해운대 해수욕장.';
         break;
       case '북동부':
         areas = ['map-area5'];
-        balloon = '북동부: 첨단 산업의 중심지입니다.';
+        balloon = '북동부: 부산의 전통, 그리고 교육의 중심지! 학군과 주거 환경이 안정적이에요.';
         break;
       case '중심':
         areas = ['map-area6', 'map-area7'];
-        balloon = '중심 지역: 부산의 핵심 상업 지구입니다.';
+        balloon = '중심 지역: 부산의 도심 지역으로, 관광 명소가 몰려 있고 교통이 편리해요!!';
         break;
       default:
         areas = [];
@@ -120,7 +120,7 @@ const MainMapPage = () => {
       <>
       {/* 로고 이미지 추가 */}
       <div className="logo-container">
-          <img src={logoImage} alt="부산 로고" className="logo-image" />
+          {/* <img src={logoImage} alt="부산 로고" className="logo-image" /> */}
         </div>
       
       <div className="map-container1">
