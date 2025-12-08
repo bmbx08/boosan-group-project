@@ -1,0 +1,80 @@
+/* 기본 스타일 */
+.Wt {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f0f0f0;
+  background-image: url('서부.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 40vh
+}
+
+.map {
+  position: relative;
+  width: 80%;
+  height: 80%;
+  background-image: url('https://upload.wikimedia.org/wikipedia/commons/5/5e/Haeundae_beach_in_Busan.jpg');
+  background-size: cover;
+  background-position: center;
+
+}
+
+.character {
+  position: absolute;
+  font-size: 2rem;
+  transition: top 1.5s ease, left 1.5s ease;
+  z-index: 2;
+}
+
+/* .sign {
+      margin-top: 10px;
+      font-size: 1rem;
+      background-color: white;
+      padding: 3px 8px;
+      border-radius: 5px;
+      color: black;
+    } */
+
+/* 관광지 아이콘 */
+.tourist-spot {
+  position: absolute;
+  font-size: 1.2rem;
+  cursor: pointer;
+  background-color: white;
+  padding: 5px;
+  border-radius: 5px;
+  transition: transform 0.2s ease;
+}
+
+.tourist-spot:hover {
+  transform: scale(1.1);
+  background-color: yellow;
+}
+
+/* NPC 스타일 */
+.npc {
+  position: absolute;
+  font-size: 2rem;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+
+.npc-active {
+  opacity: 1;
+}
+
+.npc-details {
+  margin-top: 5px;
+  font-size: 0.9rem;
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.ModalButton {
+  z-index: 1;
+}
+
